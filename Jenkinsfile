@@ -1,4 +1,8 @@
 @Library('connectall_library') _
+environment {
+ApiKey = credentials('INSIGHTS_API_KEY'),
+ApiURL = credentials('INSIGHTS_API_URL')    
+}
 
 pipeline {
     agent any
@@ -22,8 +26,8 @@ pipeline {
         stage('Create Deploy & Commits in Insights') { 
             steps {
                 script { postDeployAndCommitsToInsights(
-                        ApiKey: "${env.INSIGHTS_API_KEY}",
-                        ApiUrl: "${env.INSIGHTS_API_URL}",
+                        ${ApiKey},
+                        ${ApiUrl},
                         BuildId: "${currentBuild.id}",
                         ComponentName: "Mobile", 
                         BuildStartTime: "${currentBuild.timeInMillis}",  
@@ -47,8 +51,8 @@ pipeline {
                 BuildIsSuccessful: currentBuild.currentResult == 'SUCCESS',
                 BuildFinishTime: "${String.valueOf(currentBuild.timeInMillis + currentBuild.duration)}",
                 CurrentBuildCommit: "${env.GIT_COMMIT}",
-                ConnectALL_Api_Key: "${CONNECTALL_API_KEY}",
-                ConnectALL_Api_Url: "${CONNECTALL_API_URL}",
+                ${Api_Key},
+                ${Api_Url},
                 WorkspaceOid: 802910286629 )
       }
      }
