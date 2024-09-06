@@ -37,8 +37,8 @@ pipeline {
                        }
                    }    
          }
-        stage('Update Deploy Success & Finish Time in Insights') 
-        { steps {
+        stage('Update Deploy Success & Finish Time in Insights') { 
+            steps {
             script { postCommits(
                 AutomationName: "VSICommits",
                 DeployId: "${env.BUILD_ID}",
@@ -55,4 +55,4 @@ pipeline {
     }
   }
  } 
-}
+
