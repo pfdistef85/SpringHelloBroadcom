@@ -1,6 +1,6 @@
 @Library('connectall_library') _
 environment {
-ApiKey = credentials('INSIGHTS_API_KEY'),
+ApiKey = credentials('INSIGHTS_API_KEY')
 ApiURL = credentials('INSIGHTS_API_URL')    
 }
 
