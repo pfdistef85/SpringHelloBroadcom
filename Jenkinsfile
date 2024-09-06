@@ -26,11 +26,12 @@ pipeline {
                         ApiUrl: "${env.INSIGHTS_API_URL}",
                         BuildId: "${currentBuild.id}",
                         ComponentName: "${env.INSIGHTS_COMPONENT_OBJECT_ID}", 
-                        BuildStartTime: "${currentBuild.timeInMillis}", 
-                        PreviousSuccessBuildCommit: "${env.GIT_PREVIOUS_SUCCESSFUL_COMMIT}", 
+                        BuildStartTime: "${currentBuild.timeInMillis}",  
                         CurrentBuildCommit: "${env.GIT_COMMIT}",
                         GitRepoLoc: ”./",
-                        WorkspaceOId: "${env.INSIGHTS_WORKSPACE_OBJECT_ID}" )
+                       // WorkspaceOid: "${env.INSIGHTS_WORKSPACE_OBJECT_ID}" ),
+                        WorkspaceOid: 802910286629 )
+                    
 
 
             
