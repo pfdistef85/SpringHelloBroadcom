@@ -18,7 +18,7 @@ Test of pipelines ...
 
 Try Jenkinsfile..
 
-Uodate Webhook
+Update Webhook
 
 
 
