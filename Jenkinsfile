@@ -28,7 +28,7 @@ pipeline {
                         ComponentName: "Mobile", 
                         BuildStartTime: "${currentBuild.timeInMillis}",  
                         CurrentBuildCommit: "${env.GIT_COMMIT}",
-                        GitRepoLoc: ”./",
+                        GitRepoLoc: "./",
                         WorkspaceOid: 802910286629 )
                     
 
