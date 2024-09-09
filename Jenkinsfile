@@ -2,7 +2,7 @@
 environment {
     INSIGHTS_API_KEY = credentials("INSIGHTS_API_KEY")
     INSIGHTS_API_URL = credentials("INSIGHTS_API_URL") 
-    INSIGHTS_WORKSPACE_OBJECT_ID = 802910286629
+    INSIGHTS_WORKSPACE_OBJECT_ID = "802910286629"
     API_WORKSPACE_OID = "802910286629"
     INSIGHTS_COMPONENT_OBJECT_ID = "Mobile"
     
@@ -48,7 +48,7 @@ pipeline {
          }
         stage('Update Deploy Success & Finish Time in Insights') { 
             steps {
-            script { postCommits(
+            script { updateDeployToInsights(
 
                 ApiKey: "${env.INSIGHTS_API_KEY}",
                 ApiUrl: "${env.INSIGHTS_API_URL}",
