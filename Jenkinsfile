@@ -35,8 +35,8 @@ pipeline {
         stage('Create Deploy & Commits in Insights') { 
             steps {
                 script { postDeployAndCommitsToInsights(
-                        ApiKey: '${env.INSIGHTS_API_KEY}',
-                        ApiUrl: '${env.INSIGHTS_API_URL}',
+                        ApiKey: "${env.INSIGHTS_API_KEY}",
+                        ApiUrl: "${env.INSIGHTS_API_URL}",
                         BuildId: "${currentBuild.id}",
                         ComponentName: "${env.INSIGHTS_COMPONENT_OBJECT_ID}", 
                         BuildStartTime: "${currentBuild.timeInMillis}",  
@@ -54,8 +54,8 @@ pipeline {
             steps {
             script { updateDeployToInsights(
 
-                ApiKey: '${env.INSIGHTS_API_KEY}',
-                ApiUrl: '${env.INSIGHTS_API_URL}',
+                ApiKey: "${env.INSIGHTS_API_KEY}",
+                ApiUrl: "${env.INSIGHTS_API_URL}",
                 BuildId: "${currentBuild.id}",
                 GitRepoLoc: "./",
                 BuildFinishTime: "${String.valueOf(currentBuild.timeInMillis + currentBuild.duration)}",
