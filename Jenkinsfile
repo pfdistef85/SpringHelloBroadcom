@@ -1,7 +1,7 @@
 @Library('connectall_library') _
 environment {
-    API_KEY = credentials("INSIGHTS_API_KEY")
-    API_URL = credentials("INSIGHTS_API_URL")    
+    ApiKey = credentials("INSIGHTS_API_KEY")
+    ApiUrl = credentials("INSIGHTS_API_URL")    
 }
 
 pipeline {
@@ -28,8 +28,8 @@ pipeline {
         stage('Create Deploy & Commits in Insights') { 
             steps {
                 script { postDeployAndCommitsToInsights(
-                        $API_KEY,
-                        $API_URL,
+                        ApiKey:,
+                        ApiUrl:,
                         BuildId: "${currentBuild.id}",
                         ComponentName: "Mobile", 
                         BuildStartTime: "${currentBuild.timeInMillis}",  
@@ -53,8 +53,8 @@ pipeline {
                 BuildIsSuccessful: currentBuild.currentResult == 'SUCCESS',
                 BuildFinishTime: "${String.valueOf(currentBuild.timeInMillis + currentBuild.duration)}",
                 CurrentBuildCommit: "${env.GIT_COMMIT}",
-                $API_KEY,
-                $API_URL,
+                ApiKey:,
+                ApiUrl:,
                 WorkspaceOid: 802910286629 )
       }
      }
