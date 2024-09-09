@@ -12,7 +12,7 @@ pipeline {
             steps {
                 echo 'Building using Jenkinsfile'
                 echo 'API Key is '
-                echo "API URL is ${ApiURL}"
+                echo 'API URL is ${ApiURL}'
             }
         }
         stage('Test') {
