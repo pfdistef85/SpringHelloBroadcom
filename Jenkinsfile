@@ -1,7 +1,11 @@
 @Library('connectall_library') _
 environment {
-    ApiKey = credentials("INSIGHTS_API_KEY")
-    ApiUrl = credentials("INSIGHTS_API_URL")    
+    INSIGHTS_API_KEY = credentials("INSIGHTS_API_KEY")
+    INSIGHTS_API_URL = credentials("INSIGHTS_API_URL") 
+    INSIGHTS_WORKSPACE_OBJECT_ID = 802910286629
+    API_WORKSPACE_OID = "802910286629"
+    INSIGHTS_COMPONENT_OBJECT_ID = "Mobile"
+    
 }
 
 pipeline {
@@ -11,8 +15,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building using Jenkinsfile'
-                echo 'API Key is '
-                echo 'API URL is ${ApiURL}'
+                
             }
         }
         stage('Test') {
@@ -28,14 +31,14 @@ pipeline {
         stage('Create Deploy & Commits in Insights') { 
             steps {
                 script { postDeployAndCommitsToInsights(
-                        ApiKey:,
-                        ApiUrl:,
+                        ApiKey: "${env.INSIGHTS_API_KEY}"
+                        ApiUrl: "${env.INSIGHTS_API_URL}",
                         BuildId: "${currentBuild.id}",
-                        ComponentName: "Mobile", 
+                        ComponentName: "${env.INSIGHTS_COMPONENT_OBJECT_ID}", 
                         BuildStartTime: "${currentBuild.timeInMillis}",  
                         CurrentBuildCommit: "${env.GIT_COMMIT}",
                         GitRepoLoc: "./",
-                        WorkspaceOid: 802910286629 )
+                        WorkspaceOid: "${env.INSIGHTS_WORKSPACE_OBJECT_ID}" )
                     
 
 
@@ -46,16 +49,14 @@ pipeline {
         stage('Update Deploy Success & Finish Time in Insights') { 
             steps {
             script { postCommits(
-                AutomationName: "VSICommits",
-                DeployId: "${env.BUILD_ID}",
+
+                ApiKey: "${env.INSIGHTS_API_KEY}",
+                ApiUrl:, "${env.INSIGHTS_API_URL}"
+                BuildId: "${currentBuild.id}",
                 GitRepoLoc: "./",
-                PrevSuccessBuildCommit: "${env.GIT_PREVIOUS_SUCCESSFUL_COMMIT}",
+                BuildFinishTime: "${String.valueOf(currentBuild.timeInMillis + currentBuild.duration)}"
                 BuildIsSuccessful: currentBuild.currentResult == 'SUCCESS',
-                BuildFinishTime: "${String.valueOf(currentBuild.timeInMillis + currentBuild.duration)}",
-                CurrentBuildCommit: "${env.GIT_COMMIT}",
-                ApiKey:,
-                ApiUrl:,
-                WorkspaceOid: 802910286629 )
+                WorkspaceOid: "${env.INSIGHTS_WORKSPACE_OBJECT_ID}" )
       }
      }
     }
