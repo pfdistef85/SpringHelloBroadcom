@@ -54,7 +54,7 @@ pipeline {
                 ApiUrl: "${env.INSIGHTS_API_URL}",
                 BuildId: "${currentBuild.id}",
                 GitRepoLoc: "./",
-                BuildFinishTime: "${String.valueOf(currentBuild.timeInMillis + currentBuild.duration)}"
+                BuildFinishTime: "${String.valueOf(currentBuild.timeInMillis + currentBuild.duration)}",
                 BuildIsSuccessful: currentBuild.currentResult == 'SUCCESS',
                 WorkspaceOid: "${env.INSIGHTS_WORKSPACE_OBJECT_ID}" )
       }
