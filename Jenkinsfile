@@ -15,8 +15,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building using Jenkinsfile'
-                echo 'Insights API Key ${env.INSIGHTS_API_KEY}'
-                echo 'Insights API URL ${env.INSIGHTS_API_URL}'
+                echo 'Insights API Key ${INSIGHTS_API_KEY}'
+                echo 'Insights API URL ${INSIGHTS_API_URL}'
                 
             }
         }
