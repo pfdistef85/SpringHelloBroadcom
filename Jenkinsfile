@@ -51,7 +51,7 @@ pipeline {
             script { postCommits(
 
                 ApiKey: "${env.INSIGHTS_API_KEY}",
-                ApiUrl:, "${env.INSIGHTS_API_URL}",
+                ApiUrl: "${env.INSIGHTS_API_URL}",
                 BuildId: "${currentBuild.id}",
                 GitRepoLoc: "./",
                 BuildFinishTime: "${String.valueOf(currentBuild.timeInMillis + currentBuild.duration)}"
