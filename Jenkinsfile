@@ -11,7 +11,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building using Jenkinsfile'
-                echo "API Key is ${ApiKey}"
+                echo "API Key is "
                 echo "API URL is ${ApiURL}"
             }
         }
