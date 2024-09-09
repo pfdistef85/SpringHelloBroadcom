@@ -1,5 +1,10 @@
 @Library('connectall_library') _
-environment {
+
+
+pipeline {
+    agent any
+
+    environment {
     INSIGHTS_API_KEY = "_PWq4Y82GSBimGFPz7a9N8uAzV9u8QEQiipzHSy78tI"
     INSIGHTS_API_URL = "https://rally1.rallydev.com"
     INSIGHTS_WORKSPACE_OBJECT_ID = "802910286629"
@@ -7,9 +12,6 @@ environment {
     INSIGHTS_COMPONENT_OBJECT_ID = "Mobile"
     
 }
-
-pipeline {
-    agent any
 
     stages {
         stage('Build') {
