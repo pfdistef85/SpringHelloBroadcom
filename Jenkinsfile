@@ -1,6 +1,6 @@
 @Library('connectall_library') _
 environment {
-    INSIGHTS_API_KEY = credentials('INSIGHTS_API_KEY')
+    INSIGHTS_API_KEY = "_PWq4Y82GSBimGFPz7a9N8uAzV9u8QEQiipzHSy78tI"
     INSIGHTS_API_URL = "https://rally1.rallydev.com"
     INSIGHTS_WORKSPACE_OBJECT_ID = "802910286629"
     API_WORKSPACE_OID = "802910286629"
