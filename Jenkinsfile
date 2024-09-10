@@ -36,12 +36,12 @@ pipeline {
                 script { postDeployAndCommitsToInsights(
                         ApiKey: "${env.INSIGHTS_API_KEY}",
                         ApiUrl: "${env.INSIGHTS_API_URL}",
+                        WorkspaceOid: "${env.INSIGHTS_WORKSPACE_OBJECT_ID},
+                        CurrentBuildCommit: "${env.GIT_COMMIT}",
                         BuildId: "${currentBuild.id}",
                         ComponentName: "${env.INSIGHTS_COMPONENT_OBJECT_ID}", 
                         BuildStartTime: "${currentBuild.timeInMillis}",  
-                        CurrentBuildCommit: "${env.GIT_COMMIT}",
-                        GitRepoLoc: "./",
-                        WorkspaceOid: "${env.INSIGHTS_WORKSPACE_OBJECT_ID}" )
+                        GitRepoLoc: "./" )
                     
 
 
@@ -55,11 +55,11 @@ pipeline {
 
                 ApiKey: "${env.INSIGHTS_API_KEY}",
                 ApiUrl: "${env.INSIGHTS_API_URL}",
+                WorkspaceOid: "${env.INSIGHTS_WORKSPACE_OBJECT_ID}
+                CurrentBuildCommit: "${env.GIT_COMMIT}",
                 BuildId: "${currentBuild.id}",
-                GitRepoLoc: "./",
                 BuildFinishTime: "${String.valueOf(currentBuild.timeInMillis + currentBuild.duration)}",
-                BuildIsSuccessful: currentBuild.currentResult == 'SUCCESS',
-                WorkspaceOid: "${env.INSIGHTS_WORKSPACE_OBJECT_ID}" )
+                BuildIsSuccessful: currentBuild.currentResult == 'SUCCESS' )
       }
      }
     }
