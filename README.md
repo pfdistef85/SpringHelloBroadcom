@@ -20,6 +20,8 @@ Try Jenkinsfile..
 
 Update Webhook
 
+Understand previous and current commit.  
+
 
 
 
