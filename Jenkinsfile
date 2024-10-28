@@ -28,7 +28,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 writeFile(file: "Rel/${env.GIT_COMMIT/${currentBuild.id}", text: "áéíóú", encoding: "UTF-8")
-                          echo'Writing File..'
+    
             }
         }
         stage('Create Deploy & Commits in Insights') { 
