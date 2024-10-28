@@ -16,7 +16,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                
+                writeFile(file: "Rel/${env.GIT_COMMIT}/${currentBuild.id}", text: "áéíóú", encoding: "UTF-8")
                 
             }
         }
