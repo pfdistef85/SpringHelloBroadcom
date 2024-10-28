@@ -29,7 +29,7 @@ pipeline {
             steps {
                 echo 'Deploying..'
                 writeFile(file: "Rel/${env.GIT_COMMIT}/${currentBuild.id}", text: "áéíóú", encoding: "UTF-8")
-                echo "Rel/${env.GIT_COMMIT}/${currentBuild.id}"
+                echo "PATH: Rel/${env.GIT_COMMIT}/${currentBuild.id}"
     
             }
         }
