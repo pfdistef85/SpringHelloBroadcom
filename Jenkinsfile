@@ -15,7 +15,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building using Jenkinsfile'
+                echo 'Building...'
                 
                 
             }
@@ -27,7 +27,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                writeFile(file: "Rel/${env.GIT_COMMIT/${currentBuild.id}", text: "áéíóú", encoding: "UTF-8")
+                          echo'Writing File..'
             }
         }
         stage('Create Deploy & Commits in Insights') { 
