@@ -29,10 +29,9 @@ pipeline {
             steps {
                 echo 'Deploying..'
                 
-        script {
-                BuildPath = "Rel/${env.GIT_COMMIT}/${currentBuild.id}"
-                echo $BuildPath
-                }    
+                script {
+                        BuildPath = "Rel/${env.GIT_COMMIT}/${currentBuild.id}"
+                        }    
             }
         }
         stage('Create Deploy & Commits in Insights') { 
