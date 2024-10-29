@@ -30,7 +30,7 @@ pipeline {
                 echo 'Deploying..'
                 
         script {
-                BuildPath: "Rel/${env.GIT_COMMIT}/${currentBuild.id}",
+                BuildPath: "Rel/${env.GIT_COMMIT}/${currentBuild.id}"
                 echo $BuildPath
                 }    
             }
