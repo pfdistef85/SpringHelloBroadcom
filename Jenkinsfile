@@ -41,7 +41,7 @@ pipeline {
                         ApiUrl: "${env.INSIGHTS_API_URL}",
                         WorkspaceOid: "${env.INSIGHTS_WORKSPACE_OBJECT_ID}",
                         CurrentBuildCommit: "${env.GIT_COMMIT}",
-                        BuildId: "${currentBuild.id}",
+                        BuildId: "${BuildPath}",
                         ComponentName: "${env.INSIGHTS_COMPONENT_OBJECT_ID}", 
                         BuildStartTime: "${currentBuild.timeInMillis}",  
                         GitRepoLoc: "./" )
@@ -60,7 +60,7 @@ pipeline {
                 ApiUrl: "${env.INSIGHTS_API_URL}",
                 WorkspaceOid: "${env.INSIGHTS_WORKSPACE_OBJECT_ID}",
                 CurrentBuildCommit: "${env.GIT_COMMIT}",
-                BuildId: "${currentBuild.id}",
+                BuildId: "${BuildPath}",
                 BuildFinishTime: "${String.valueOf(currentBuild.timeInMillis + currentBuild.duration)}",
                 BuildIsSuccessful: currentBuild.currentResult == 'SUCCESS' )
       }
