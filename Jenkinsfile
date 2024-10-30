@@ -38,7 +38,7 @@ pipeline {
         stage('Create Deploy') {
             steps {
               script {
-                    sh "date --date= ''@${currentBuild.startTimeInMillis}'' +%Y-%m-%dT%H:%M:%S%z"
+                    println LocalDateTime.now()
                     postDeploys(
                         AutomationName: "VSIDeploys", 
                         DeployId: "${BUILD_PATH}", 
