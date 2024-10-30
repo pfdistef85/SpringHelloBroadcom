@@ -54,7 +54,7 @@ pipeline {
               sleep time: 10, unit: 'SECONDS'
             }
         }
-         stage('Build Current Repo') {
+        stage('Build Current Repo') {
             steps {
               script {
                     postCommits(
@@ -68,7 +68,9 @@ pipeline {
                     )
               }
             }
-
+        }
+         stage('Update VSM Deploy') {
+            steps {
              script {
                 echo 'Update VSM Deploy with duration'
                 sh '''
