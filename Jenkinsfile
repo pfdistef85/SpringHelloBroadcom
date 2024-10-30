@@ -7,8 +7,8 @@ pipeline {
     environment {
     INSIGHTS_API_KEY = credentials('INSIGHTS_API_KEY')
     INSIGHTS_API_URL = credentials('INSIGHTS_API_URL') 
-    CONNECTALL_API_URL = credential('CONNECTALL_API_URL')
-    CONNECTALL_API_KEY = credential('CONNECTALL_API_KEY')
+    CONNECTALL_API_URL = credentials('CONNECTALL_API_URL')
+    CONNECTALL_API_KEY = credentials('CONNECTALL_API_KEY')
     INSIGHTS_WORKSPACE_OBJECT_ID = "802910286629"
     INSIGHTS_COMPONENT_OBJECT_ID = "Mobile"
     
@@ -42,7 +42,7 @@ pipeline {
                     sh "date --date='@1721865551' +%Y-%m-%dT%H:%M:%S%z"
                     postDeploys(
                         AutomationName: "VSIDeploys", 
-                        DeployId: "${BuildPathenv.BUILD_ID}", 
+                        DeployId: "${BuildPathenv}", 
                         BuildStartTime: "${currentBuild.timeInMillis}",
                         BuildComponent: "connectall", 
                         ConnectALL_Api_Key: "${CONNECTALL_API_KEY}",
@@ -54,20 +54,43 @@ pipeline {
               sleep time: 10, unit: 'SECONDS'
             }
         }
-        stage('Update Deploy Success & Finish Time in Insights') { 
+         stage('Build Current Repo') {
             steps {
-            script { updateDeployToInsights(
+              script {
+                    postCommits(
+                        AutomationName: "VSICommits", 
+                        DeployId: "${BuildPathenv}", 
+                        GitRepoLoc: "./", 
+                        PrevSuccessBuildCommit: "${env.GIT_PREVIOUS_SUCCESSFUL_COMMIT}",
+                        CurrentBuildCommit: "${env.GIT_COMMIT}",
+                        ConnectALL_Api_Key: "${CONNECTALL_API_KEY}",
+                        ConnectALL_Api_Url: "${CONNECTALL_API_URL}"
+                    )
+              }
+            }
 
-                ApiKey: "${env.INSIGHTS_API_KEY}",
-                ApiUrl: "${env.INSIGHTS_API_URL}",
-                WorkspaceOid: "${env.INSIGHTS_WORKSPACE_OBJECT_ID}",
-                CurrentBuildCommit: "${env.GIT_COMMIT}",
-                BuildId: "${BuildPath}",
-                BuildFinishTime: "${String.valueOf(currentBuild.timeInMillis + currentBuild.duration)}",
-                BuildIsSuccessful: currentBuild.currentResult == 'SUCCESS' )
-      }
-     }
-    }
+             script {
+                echo 'Update VSM Deploy with duration'
+                sh '''
+                    ls -lrt
+                    git status
+                    env
+                '''
+                
+                postDeploys(
+                    AutomationName: "VSIDeploys", 
+                    DeployId: "${BuildPathenv}", 
+                    BuildComponent: "connectall",
+                    BuildResult: "${currentBuild.currentResult}", 
+                    BuildStartTime: "${currentBuild.timeInMillis}",
+                    BuildFinishTime: "${String.valueOf(currentBuild.timeInMillis + currentBuild.duration)}",
+                    ConnectALL_Api_Key: "${CONNECTALL_API_KEY}",
+                    ConnectALL_Api_Url: "${CONNECTALL_API_URL}",
+                    Create: 'false'
+                )
+            
+            }
+        }
   }
  } 
 
