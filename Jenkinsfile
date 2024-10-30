@@ -11,6 +11,7 @@ pipeline {
     CONNECTALL_API_KEY = credentials('CONNECTALL_API_KEY')
     INSIGHTS_WORKSPACE_OBJECT_ID = "802910286629"
     INSIGHTS_COMPONENT_OBJECT_ID = "Mobile"
+    BUILD_PATH = "REL/${currentBuild.startTimeInMillis}/${currentBuild.id}"    
     
 }
 
@@ -31,9 +32,7 @@ pipeline {
             steps {
                 echo 'Deploying..'
                 
-                script {
-                        BuildPath = "Rel/${env.GIT_COMMIT}/${currentBuild.id}"
-                        }    
+                  
             }
         }
         stage('Create Deploy') {
@@ -42,7 +41,7 @@ pipeline {
                     sh "date --date='@1721865551' +%Y-%m-%dT%H:%M:%S%z"
                     postDeploys(
                         AutomationName: "VSIDeploys", 
-                        DeployId: "${BuildPathenv}", 
+                        DeployId: "${BUILD_PATH}", 
                         BuildStartTime: "${currentBuild.timeInMillis}",
                         BuildComponent: "connectall", 
                         ConnectALL_Api_Key: "${CONNECTALL_API_KEY}",
@@ -59,7 +58,7 @@ pipeline {
               script {
                     postCommits(
                         AutomationName: "VSICommits", 
-                        DeployId: "${BuildPathenv}", 
+                        DeployId: "${BUILD_PATH}", 
                         GitRepoLoc: "./", 
                         PrevSuccessBuildCommit: "prod_deploy",
                         CurrentBuildCommit: "${env.GIT_COMMIT}",
