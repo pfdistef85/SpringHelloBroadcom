@@ -43,7 +43,7 @@ pipeline {
                         AutomationName: "VSIDeploys", 
                         DeployId: "${BUILD_PATH}", 
                         BuildStartTime: "${currentBuild.timeInMillis}",
-                        BuildComponent: "connectall", 
+                        BuildComponent: "liferay",
                         ConnectALL_Api_Key: "${CONNECTALL_API_KEY}",
                         ConnectALL_Api_Url: "${CONNECTALL_API_URL}",
                         Create: 'true'
@@ -68,31 +68,7 @@ pipeline {
               }
             }
         }
-         stage('Update VSM Deploy') {
-            steps {
-             script {
-                echo 'Update VSM Deploy with duration'
-                sh '''
-                    ls -lrt
-                    git status
-                    env
-                '''
-                
-                postDeploys(
-                    AutomationName: "VSIDeploys", 
-                    DeployId: "${BUILD_PATH}", 
-                    BuildComponent: "connectall",
-                    BuildResult: "${currentBuild.currentResult}", 
-                    BuildStartTime: "${currentBuild.timeInMillis}",
-                    BuildFinishTime: "${String.valueOf(currentBuild.timeInMillis + currentBuild.duration)}",
-                    ConnectALL_Api_Key: "${CONNECTALL_API_KEY}",
-                    ConnectALL_Api_Url: "${CONNECTALL_API_URL}",
-                    Create: 'false'
-                )
-            
-            }
-        }
-  }
+         
  } 
 
 }
