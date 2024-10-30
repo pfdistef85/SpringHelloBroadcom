@@ -80,7 +80,7 @@ pipeline {
                 
                 postDeploys(
                     AutomationName: "VSIDeploys", 
-                    DeployId: "${BuildPathenv}", 
+                    DeployId: "${BUILD_PATH}", 
                     BuildComponent: "connectall",
                     BuildResult: "${currentBuild.currentResult}", 
                     BuildStartTime: "${currentBuild.timeInMillis}",
