@@ -24,7 +24,7 @@ Understand previous and current commit.
 
 Making a new change
 
-Create a file, test, bla, bla, bla, bla
+Create a file, test, bla, bla, bla, bla, bla
 
 
 
