@@ -11,7 +11,8 @@ pipeline {
     CONNECTALL_API_KEY = credentials('CONNECTALL_API_KEY')
     INSIGHTS_WORKSPACE_OBJECT_ID = "802910286629"
     INSIGHTS_COMPONENT_OBJECT_ID = "Mobile"
-    BUILD_PATH = "REL/${currentBuild.startTimeInMillis}/${currentBuild.id}"    
+    BUILD_PATH = "REL/${currentBuild.startTimeInMillis}/${currentBuild.id}"   
+    DEBUG_VALUEOPS_INSIGHTS_LIBRARY = "true"
     
 }
 
