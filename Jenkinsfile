@@ -40,7 +40,7 @@ pipeline {
               script {
                     println new Date() 
                     postDeploys(
-                        AutomationName: "VSIDeploys", 
+                        AutomationName: "JenkinsBuild", 
                         DeployId: "${BUILD_PATH}", 
                         BuildStartTime: "${currentBuild.timeInMillis}",
                         BuildComponent: "liferay",
@@ -57,7 +57,7 @@ pipeline {
             steps {
               script {
                     postCommits(
-                        AutomationName: "VSICommits", 
+                        AutomationName: "VSICommits2", 
                         DeployId: "${BUILD_PATH}", 
                         GitRepoLoc: "./", 
                         PrevSuccessBuildCommit: "prod_deploy",
