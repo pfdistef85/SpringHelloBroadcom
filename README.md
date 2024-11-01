@@ -26,7 +26,7 @@ Making a new change and change Branch in Jenkins to support REL!
 
 Create a file, test, bla, bla, bla, bla, bla
 
-Make a bigger change
+Make a bigger change, go!
 
 
 
