@@ -9,6 +9,7 @@ pipeline {
     INSIGHTS_API_URL = credentials('INSIGHTS_API_URL')    
     INSIGHTS_WORKSPACE_OBJECT_ID = "802910286629"
     INSIGHTS_COMPONENT_OBJECT_ID = "Mobile"
+    BUILD_PATH = "REL/${currentBuild.startTimeInMillis}/${currentBuild.id}"  
     
 }
 
@@ -29,9 +30,7 @@ pipeline {
             steps {
                 echo 'Deploying..'
                 
-                script {
-                        BuildPath = "Rel/${env.GIT_COMMIT}/${currentBuild.id}"
-                        }    
+                
             }
         }
         stage('Create Deploy & Commits in Insights') { 
