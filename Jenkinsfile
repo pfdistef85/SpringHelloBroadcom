@@ -9,7 +9,7 @@ pipeline {
     INSIGHTS_API_URL = credentials('INSIGHTS_API_URL')    
     INSIGHTS_WORKSPACE_OBJECT_ID = "802910286629"
     INSIGHTS_COMPONENT_OBJECT_ID = "Mobile"
-    BUILD_PATH = "REL\\\${currentBuild.startTimeInMillis}\\\${currentBuild.id}"  
+    BUILD_PATH = "REL'\'${currentBuild.startTimeInMillis}'\'${currentBuild.id}"  
     
 }
 
