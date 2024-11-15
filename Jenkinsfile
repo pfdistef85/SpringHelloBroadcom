@@ -17,6 +17,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
+                echo "$BUILD_PATH"
                
                 
             }
