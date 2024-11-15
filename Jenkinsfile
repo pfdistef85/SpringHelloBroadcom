@@ -40,7 +40,7 @@ pipeline {
                         ApiUrl: "${env.INSIGHTS_API_URL}",
                         WorkspaceOid: "${env.INSIGHTS_WORKSPACE_OBJECT_ID}",
                         CurrentBuildCommit: "${env.GIT_COMMIT}",
-                        BuildId: "${BuildPath}",
+                        BuildId: "${BUILD_PATH}",
                         ComponentName: "${env.INSIGHTS_COMPONENT_OBJECT_ID}", 
                         BuildStartTime: "${currentBuild.timeInMillis}",  
                         GitRepoLoc: "./" )
